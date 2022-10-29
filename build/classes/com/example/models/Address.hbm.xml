@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 5, 2019 11:21:42 AM by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping default-lazy="false">
+ <class catalog="storedb" name="com.example.models.Address" table="address">
+  <id name="addressId" type="java.lang.Integer">
+   <column name="address_id"/>
+   <generator class="identity"/>
+  </id>
+  <property generated="never" lazy="false" name="address" type="string">
+   <column length="500" name="address" not-null="true"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="false" name="customers"
+   sort="unsorted" table="customer">
+   <key>
+    <column name="address_id" not-null="true"/>
+   </key>
+   <one-to-many class="com.example.models.Customer"/>
+  </set>
+ </class>
+</hibernate-mapping>

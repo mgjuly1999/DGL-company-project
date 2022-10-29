@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 14, 2020 7:45:08 AM by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping default-lazy="false">
+ <class catalog="storedb" name="com.example.models.StorePerLitter" table="store_per_litter">
+  <id name="storePerLitterId" type="java.lang.Integer">
+   <column name="store_per_litter_id"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="com.example.models.Store" fetch="select" name="store" cascade="all">
+   <column name="store_id" not-null="true"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="litter" type="double">
+   <column name="litter" not-null="true" precision="22" scale="0"/>
+  </property>
+  <property generated="never" lazy="false" name="pound" type="double">
+   <column name="pound" not-null="true" precision="22" scale="0"/>
+  </property>
+ </class>
+</hibernate-mapping>

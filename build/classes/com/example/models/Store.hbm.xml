@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 14, 2020 7:45:08 AM by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping default-lazy="false">
+ <class catalog="storedb" name="com.example.models.Store" table="store">
+  <id name="storeId" type="java.lang.Integer">
+   <column name="store_id"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="com.example.models.Customer" fetch="select" name="customer">
+   <column name="customer_id" not-null="true"/>
+  </many-to-one>
+  <many-to-one class="com.example.models.Admin" fetch="select" name="adminByGoldAdminId">
+   <column name="gold_admin_id" not-null="true"/>
+  </many-to-one>
+  <many-to-one class="com.example.models.Admin" fetch="select" name="adminByAdminId">
+   <column name="admin_id" not-null="true"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="waterLitter" type="double">
+   <column name="water_litter" not-null="true" precision="22" scale="0"/>
+  </property>
+  <property generated="never" lazy="false" name="drc" type="double">
+   <column name="drc" not-null="true" precision="22" scale="0"/>
+  </property>
+  <property generated="never" lazy="false" name="totalLitter" type="double">
+   <column name="total_litter" not-null="true" precision="22" scale="0"/>
+  </property>
+  <property generated="never" lazy="false" name="dryPound" type="double">
+   <column name="dry_pound" not-null="true" precision="22" scale="0"/>
+  </property>
+  <property generated="never" lazy="false" name="createDate" type="date">
+   <column length="10" name="create_date" not-null="true"/>
+  </property>
+  <set fetch="select" lazy="false" name="storePerLitters"
+   sort="unsorted" table="store_per_litter" inverse="true" cascade="all">
+   <key>
+    <column name="store_id" not-null="true"/>
+   </key>
+   <one-to-many class="com.example.models.StorePerLitter"/>
+  </set>
+ </class>
+</hibernate-mapping>
